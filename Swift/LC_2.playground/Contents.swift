@@ -41,8 +41,17 @@ public class ListNode {
 
 class Solution {
     func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        guard let l1 = l1 else {
+            return l2
+        }
+        guard let l2 = l2 else {
+            return l1
+        }
         
         func lastListNode(_ ll: ListNode?, _ add:Bool = false) -> ListNode? {
+            if !add {
+                return ll
+            }
             guard let ll = ll else {
                 return ListNode(1)
             }
@@ -61,14 +70,13 @@ class Solution {
             return list
         }
         
-        guard let l1 = l1 else {
-            return l2
-        }
-        guard let l2 = l2 else {
-            return l1
-        }
-        
         func nextListNode(_ l1: ListNode?, _ l2: ListNode?, _ add:Bool = false) -> ListNode? {
+            if l1 == nil && l2 == nil {
+                if add {
+                    return ListNode(1)
+                }
+                return nil
+            }
             guard let l1 = l1 else {
                 return lastListNode(l2, add)
             }
@@ -92,7 +100,7 @@ class Solution {
         
         let list = ListNode()
         let value = l1.val + l2.val
-        let add = value > 10
+        let add = value >= 10
         if add {
             list.val = value % 10
         } else {
