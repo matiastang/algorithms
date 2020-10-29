@@ -41,52 +41,108 @@ public class ListNode {
 
 class Solution {
     func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        
+        func lastListNode(_ ll: ListNode?, _ add:Bool = false) -> ListNode? {
+            guard let ll = ll else {
+                return ListNode(1)
+            }
+            let list = ListNode()
+            var value = ll.val
+            if (add) {
+                value += 1
+            }
+            let nextAdd = value >= 10
+            if nextAdd {
+                list.val = value % 10
+            } else {
+                list.val = value
+            }
+            list.next = lastListNode(ll.next, nextAdd)
+            return list
+        }
+        
         guard let l1 = l1 else {
-            return nil
+            return l2
         }
         guard let l2 = l2 else {
-            return nil
+            return l1
         }
-        var list:ListNode? = nil
-        var resList:ListNode? = nil
-        var next1 = l1
-        var next2 = l2
         
-        var upNumber = false
-        while next1.next != nil && next2.next != nil {
-            let value = next1.val + next2.val + (upNumber ? 1 : 0)
-            if value > 10 {
-                upNumber = true
+        func nextListNode(_ l1: ListNode?, _ l2: ListNode?, _ add:Bool = false) -> ListNode? {
+            guard let l1 = l1 else {
+                return lastListNode(l2, add)
+            }
+            guard let l2 = l2 else {
+                return lastListNode(l1, add)
+            }
+            let list = ListNode()
+            var value = l1.val + l2.val
+            if (add) {
+                value += 1
+            }
+            let nextAdd = value >= 10
+            if nextAdd {
+                list.val = value % 10
             } else {
-                upNumber = false
+                list.val = value
             }
-            if list == nil {
-                list = ListNode(value % 10)
-                resList = list
-            }
-            if next1.next == nil && next2.next != nil {
-                if upNumber {
-                    
-                    list?.next?.val += 1
-                } else {
-                    list?.next = next2
-                }
-            }
-            if next1.next != nil && next2.next == nil {
-                if upNumber {
-                    list?.next?.val += 1
-                } else {
-                    list?.next = next1
-                }
-            }
-            next1 = l1.next!
-            next2 = l2.next!
-            list?.next = ListNode(value % 10)
+            list.next = nextListNode(l1.next, l2.next, nextAdd)
+            return list
         }
         
-        return resList
+        let list = ListNode()
+        let value = l1.val + l2.val
+        let add = value > 10
+        if add {
+            list.val = value % 10
+        } else {
+            list.val = value
+        }
+        list.next = nextListNode(l1.next, l2.next, add)
+        return list
+        
+//        var list:ListNode? = nil
+//        var resList:ListNode? = nil
+//        var next1 = l1
+//        var next2 = l2
+//
+//        var upNumber = false
+//        while next1.next != nil && next2.next != nil {
+//            let value = next1.val + next2.val + (upNumber ? 1 : 0)
+//            if value > 10 {
+//                upNumber = true
+//            } else {
+//                upNumber = false
+//            }
+//            if list == nil {
+//                list = ListNode(value % 10)
+//                resList = list
+//            }
+//            if next1.next == nil && next2.next != nil {
+//                if upNumber {
+//
+//                    list?.next?.val += 1
+//                } else {
+//                    list?.next = next2
+//                }
+//            }
+//            if next1.next != nil && next2.next == nil {
+//                if upNumber {
+//                    list?.next?.val += 1
+//                } else {
+//                    list?.next = next1
+//                }
+//            }
+//            next1 = l1.next!
+//            next2 = l2.next!
+//            list?.next = ListNode(value % 10)
+//        }
+//
+//        return resList
     }
 }
+
+
 
 func add(_ list:ListNode) ->ListNode {
     var addList = list
@@ -95,7 +151,6 @@ func add(_ list:ListNode) ->ListNode {
         let value = tempList.val + 1
         if value > 10 {
             tempList.val = value % 10
-            tempList.
         } else {
             tempList.val = value
             break
