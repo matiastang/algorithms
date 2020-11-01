@@ -32,7 +32,7 @@ class Solution {
         var sum = 0
         var maxNumber = Int.min
         for value in nums {
-            if value > 0 {
+            if sum > 0 {
                 sum += value
             } else {
                 sum = value
