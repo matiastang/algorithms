@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-02-20 16:53:54
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-02-20 18:09:32
+ * @LastEditTime: 2021-02-22 10:10:58
  * @Description: file content
  */
 /*
@@ -143,5 +143,71 @@ function findDisappearedNumbersFour(nums: number[]): number[] {
     }
     return numbers
 };
-console.log(findDisappearedNumbersFour([4,3,2,7,2,3,1,3]))
-console.log(findDisappearedNumbersThree([1,1]))
+// console.log(findDisappearedNumbersFour([4,3,2,7,2,3,1,3]))
+// console.log(findDisappearedNumbersThree([1,1]))
+/**
+ * @description: 448. 找到所有数组中消失的数字
+ * @param {number} nums
+ * @return {*}
+ * 144 ms	50.7 MB	TypeScript
+ */
+function findDisappearedNumbersFive(nums: number[]): number[] {
+    // let numSet = new Set(nums)
+    let numbers = []
+    // for (let index = 1; index <= nums.length; index++) {
+    //     if (!numSet.has(index)) {
+    //         numbers.push(index) 
+    //     }
+    // }
+    return numbers
+};
+// console.log(findDisappearedNumbersFive([4,3,2,7,2,3,1,3]))
+// console.log(findDisappearedNumbersFive([1,1]))
+/**
+ * @description: 448. 找到所有数组中消失的数字
+ * @param {number} nums
+ * @return {*}
+ * 144 ms	50.7 MB	TypeScript
+ */
+function findDisappearedNumbersSix(nums: number[]): number[] {
+    let max = nums.length
+    for (const iterator of nums) {
+        let index = (iterator - 1) % max
+        nums[index] += max
+    }
+    let numbers = []
+    for (let index = 0; index < nums.length; index++) {
+        if (nums[index] <= max) {
+            numbers.push(index + 1) 
+        }
+    }
+    return numbers
+};
+// console.log(findDisappearedNumbersSix([4,3,2,7,8,2,3,1]))
+// console.log(findDisappearedNumbersSix([1,1]))
+/**
+ * @description: 448. 找到所有数组中消失的数字
+ * @param {number} nums
+ * @return {*}
+ * 128 ms	47.1 MB	TypeScript
+ */
+function findDisappearedNumbersSive(nums: number[]): number[] {
+    for (const iterator of nums) {
+        let index = iterator - 1
+        if (iterator < 0) {
+            index = -1 - iterator
+        }
+        if (nums[index] > 0) {
+            nums[index] = -nums[index]
+        }
+    }
+    let numbers = []
+    for (let index = 0; index < nums.length; index++) {
+        if (nums[index] > 0) {
+            numbers.push(index + 1) 
+        }
+    }
+    return numbers
+};
+console.log(findDisappearedNumbersSive([4,3,2,7,8,2,3,1]))
+console.log(findDisappearedNumbersSive([1,1]))
