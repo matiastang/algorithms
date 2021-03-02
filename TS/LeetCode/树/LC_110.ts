@@ -2,9 +2,10 @@
  * @Author: tangdaoyong
  * @Date: 2021-02-23 09:16:12
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-02-23 14:03:14
+ * @LastEditTime: 2021-03-02 12:06:53
  * @Description: 110. 平衡二叉树
  */
+import TreeNode from '../TreeNode';
 /*
 110. 平衡二叉树
 给定一个二叉树，判断它是否是高度平衡的二叉树。
@@ -17,16 +18,6 @@
 输入：root = [3,9,20,null,null,15,7]
 输出：true
 */
-class TreeNode {
-    val: number
-    left: TreeNode | null
-    right: TreeNode | null
-    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-        this.val = (val===undefined ? 0 : val)
-        this.left = (left===undefined ? null : left)
-        this.right = (right===undefined ? null : right)
-    }
-}
 
 function isBalancedOne(root: TreeNode | null): boolean {
     // 树为空

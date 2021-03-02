@@ -2,9 +2,10 @@
  * @Author: tangdaoyong
  * @Date: 2021-02-24 10:16:36
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-02-24 10:30:17
+ * @LastEditTime: 2021-02-24 12:03:24
  * @Description: 617. 合并二叉树
  */
+import TreeNode from '../TreeNode';
 /*
 617. 合并二叉树
 给定两个二叉树，想象当你将它们中的一个覆盖到另一个上时，两个二叉树的一些节点便会重叠。
@@ -35,15 +36,24 @@
 空间复杂度：O(\min(m,n))O(min(m,n))，其中 mm 和 nn 分别是两个二叉树的节点个数。空间复杂度取决于递归调用的层数，递归调用的层数不会超过较小的二叉树的最大高度，最坏情况下，二叉树的高度等于节点数。
  */
 function mergeTrees(root1: TreeNode | null, root2: TreeNode | null): TreeNode | null {
-    if (root1 === null && root2 === null) {
-        return null
-    } else if (root1 !== null && root2 === null) {
+    // 140 ms	45.8 MB	TypeScript
+    // if (root1 === null && root2 === null) {
+    //     return null
+    // } else if (root1 !== null && root2 === null) {
+    //     return root1
+    // } else if (root1 === null && root2 !== null) {
+    //     return root2
+    // } else {
+    //     return new TreeNode(root1.val + root2.val, mergeTrees(root1.left, root2.left), mergeTrees(root1.right, root2.right))
+    // }
+    // 136 ms	46 MB	TypeScript
+    if (root2 === null) {
         return root1
-    } else if (root1 === null && root2 !== null) {
-        return root2
-    } else {
-        return new TreeNode(root1.val + root2.val, mergeTrees(root1.left, root2.left), mergeTrees(root1.right, root2.right))
     }
+    if (root1 === null) {
+        return root2
+    }
+    return new TreeNode(root1.val + root2.val, mergeTrees(root1.left, root2.left), mergeTrees(root1.right, root2.right))
 };
 
 // TODO: - 还可是使用广度优先(BFS),可参考LeetCode题解

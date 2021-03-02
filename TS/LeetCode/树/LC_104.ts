@@ -2,9 +2,11 @@
  * @Author: tangdaoyong
  * @Date: 2021-02-24 09:17:39
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-02-24 10:17:37
+ * @LastEditTime: 2021-03-02 12:06:31
  * @Description: 104. 二叉树的最大深度
  */
+import QueueT from '../../utils/Queue'
+import TreeNode from '../TreeNode';
 /*
 104. 二叉树的最大深度
 给定一个二叉树，找出其最大深度。
@@ -23,16 +25,6 @@
    15   7
 返回它的最大深度 3 。
 */
-// class TreeNode {
-//     val: number
-//     left: TreeNode | null
-//     right: TreeNode | null
-//     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-//         this.val = (val===undefined ? 0 : val)
-//         this.left = (left===undefined ? null : left)
-//         this.right = (right===undefined ? null : right)
-//     }
-// }
 /**
  * @description: 二叉树的最大深度，深度优先搜索DFS
  * @param {TreeNode} root
@@ -84,17 +76,6 @@ function maxDepthTwo(root: TreeNode | null): number {
     }
     return number
 };
-
-/**
-* pop的返回值当data为空时返回undefined
-* 使用了泛型约束
-*/
-class QueueT<T> {
-    private data = Array<T>();
-    size = (): number => this.data.length;
-    push = (item: T) => this.data.push(item);
-	pop = (): T | undefined => this.data.shift();
-}
 
 /**
  * @description: 二叉树的最小深度，广度优先搜索BFS
