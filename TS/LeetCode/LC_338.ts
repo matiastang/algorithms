@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-03-03 09:55:27
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-03-03 12:12:02
+ * @LastEditTime: 2021-03-03 14:51:42
  * @Description: 比特位计数
  */
 /*
@@ -162,7 +162,7 @@ function countBitsFour(num: number): number[] {
 100.00%
 的用户
  */
-function countBits(num: number): number[] {
+function countBitsFive(num: number): number[] {
     if (num === 0) {
         return [0]
     }
@@ -172,13 +172,53 @@ function countBits(num: number): number[] {
         if (res[i] !== undefined) {
             continue
         }
-        // 2倍值相同
+        // 2倍值相同，如果当前为没有值，则当前为的值为前一位加一
         let value = res[i - 1] + 1
         let next = i
         while (next <= num) {
             res[next] = value
             next = next << 1
         }
+    }
+    return res
+};
+
+/**
+ * 获取number的二进制表示中1的个数
+ * @param x 
+ */
+const countOnes = (x:number) => {
+    let ones = 0;
+    while (x > 0) {
+        // `x=x&(x−1)`，该运算将 `x` 的二进制表示的最后一个 `1` 变成 `0`
+        x &= (x - 1);
+        ones++;
+    }
+    return ones;
+}
+
+/**
+ * 官解 方法三：动态规划——最低有效位
+ * @param num 
+ */
+function countBitsSix(num: number): number[] {
+    let res = Array<number>(num + 1)
+    res[0] = 0
+    for (let i = 1; i <= num; i++) {
+        res[i] = res[i >> 1] + (i & 1)
+    }
+    return res
+};
+
+/**
+ * 官解 方法四：动态规划——最低设置位
+ * @param num 
+ */
+function countBitsSeven(num: number): number[] {
+    let res = Array<number>(num + 1)
+    res[0] = 0
+    for (let i = 1; i <= num; i++) {
+        res[i] = res[i&(i - 1)] + 1
     }
     return res
 };
