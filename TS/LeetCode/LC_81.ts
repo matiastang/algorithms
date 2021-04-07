@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-04-07 09:14:09
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-04-07 09:29:21
+ * @LastEditTime: 2021-04-07 10:02:59
  * @Description: 搜索旋转排序数组 II
  */
 /*
@@ -73,6 +73,57 @@ function search(nums: number[], target: number): boolean {
         }
         if (nums[i] < nums[i - 1]) {
             return false
+        }
+    }
+    return false
+};
+
+/**
+ * 二分查找
+ * @param nums 
+ * @param target 
+ * @returns 
+ * 执行用时：
+96 ms
+, 在所有 TypeScript 提交中击败了
+33.33%
+的用户
+内存消耗：
+39.8 MB
+, 在所有 TypeScript 提交中击败了
+58.33%
+的用户
+ */
+function searchOne(nums: number[], target: number): boolean {
+    if (nums[0] === target) {
+        return true
+    }
+    if (nums.length === 1) {
+        return false
+    }
+    let l = 0
+    let r = nums.length - 1
+    while (r >= l) {
+        let mid = Math.floor((r + l) / 2)
+        if (nums[mid] === target) {
+            return true
+        }
+        // 元素可能重复，特殊情况处理
+        if (nums[l] == nums[mid] && nums[mid] == nums[r]) {
+            ++l;
+            --r;
+        } else if (nums[l] <= nums[mid]) {
+            if (nums[l] <= target && target < nums[mid]) {
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        } else {
+            if (nums[mid] < target && target <= nums[r]) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
         }
     }
     return false
