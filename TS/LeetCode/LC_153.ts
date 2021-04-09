@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-04-08 09:20:48
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-04-08 09:50:17
+ * @LastEditTime: 2021-04-08 10:24:08
  * @Description: 寻找旋转排序数组中的最小值
  */
 /*
@@ -50,8 +50,11 @@ function findMin(nums: number[]): number {
     let r = nums.length - 1
     while (r >= l) {
         let mid = Math.floor((l + r) / 2)
+        if (mid === l && mid === r) {
+            return nums[mid]
+        }
         // 全部翻转，特殊处理
-        if (mid === 0) {
+        if (mid === 0 && nums[i] < nums[i + 1] && nums[i] < nums[nums.length - 1]) {
             if (nums[mid] === nums[l]) {
                 return nums[mid]
             }
