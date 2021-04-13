@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-04-12 10:06:12
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-04-12 23:03:30
+ * @LastEditTime: 2021-04-13 09:12:56
  * @Description: 最大数
  */
 /*
@@ -110,4 +110,37 @@ function largestNumberOne(nums: number[]): string {
         return '0';
     }
     return nums.join('');
+}
+
+/**
+ * 
+ * @param nums 
+ * @returns 
+ * 执行用时：
+84 ms
+, 在所有 TypeScript 提交中击败了
+95.65%
+的用户
+内存消耗：
+39.2 MB
+, 在所有 TypeScript 提交中击败了
+100.00%
+的用户
+ */
+function largestNumberTwo(nums: number[]): string {
+    let arr = nums.sort((left, right) => {
+        let leftStr = `${left}${right}`
+        let rightStr = `${right}${left}`
+        if (leftStr < rightStr) {
+            return 1
+        }
+        if (leftStr > rightStr) {
+            return -1
+        }
+        return 0
+    })
+    if (arr[0] == 0) {
+        return '0'
+    }
+    return arr.join('')
 }
