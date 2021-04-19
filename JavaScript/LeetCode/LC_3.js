@@ -71,3 +71,85 @@ var lengthOfLongestSubstring2 = function(s) {
     }
     return subNumber
 };
+
+var a = 10;
+(async () => {
+    var c = await a + 1;
+    console.log(c);
+})();
+a = 0;
+
+/*
+await 捕获了值类型，值类型作为参数，调用函数的时候，参数入栈。真正函数中使用的是栈中保存的参数
+如果a是引用类型，则是修改之后的
+await a + 1;等价于：
+(await a) + 1;
+和await 1 + a;
+是不一样的
+await (1 + a);是自己控制了优先级
+*/
+var a = {
+    value: 10
+};
+(async () => {
+    // var c = Promise.resolve(a) + 1;
+    // var c = await a + 1;
+    // var c = await Promise.resolve(a) + 1;
+    // var c = await new Promise((resolve, reject) => {
+    //     console.log(`Promise中的a=${a}`);
+    //     resolve(a)
+    // }).value + 1;
+    var c = (await a).value + 1;
+    console.log(`c=${c},a=${a.value}`);
+})();
+console.log('修改之前')
+a.value = 0;
+console.log('修改之后')
+
+
+
+var a = 10;
+(async () => {
+    // var c = Promise.resolve(a) + 1;
+    // var c = await a + 1;
+    // var c = await Promise.resolve(a) + 1;
+    var c = await new Promise((resolve, reject) => {
+        console.log(`Promise中的a=${a}`);
+        resolve(a)
+    }) + 1;
+    console.log(`c=${c},a=${a}`);
+})();
+console.log('修改之前')
+a = 0;
+console.log('修改之后')
+
+/*
+异步函数中只有await及之后的逻辑是异步的
+*/
+var a = 10;
+(async () => {
+    console.log('异步函数')
+    var c = await a + 1;
+    console.log(`c=${c}`);
+})();
+console.log('修改之前')
+a = 0;
+console.log('修改之后')
+VM5065:4 c=11
+0
+var a = 10;
+(async () => {
+    var c = await 1 + a;
+    console.log(`c=${c}`);
+})();
+a = 0;
+VM5105:4 c=1
+0
+var a = 10;
+(async () => {
+    var c = await (1 + a);
+    console.log(`c=${c}`);
+})();
+a = 0;
+VM5143:4 c=11
+0
