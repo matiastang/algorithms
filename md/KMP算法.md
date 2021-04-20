@@ -20,6 +20,7 @@
             - [求PMT数组](#求pmt数组)
             - [KMP算法实现](#kmp算法实现)
         - [总结](#总结)
+    - [延申](#延申)
 
 <!-- /TOC -->
 # KMP算法
@@ -279,6 +280,9 @@ function kmpSearchSubString(str: String, searchStr: String ): number {
 }
 ```
 
+*注意*：
+当 searchStr 是空字符串时，我们应当返回什么值呢？这是一个在面试中很好的问题。
+当 searchStr 是空字符串时我们应当返回 0 。这与 C 语言的 strstr() 以及 Java 的 indexOf() 定义相符。js中的 indexOf()同样如此。
 ### 总结
 
 先看一个测试比对结果。
@@ -335,3 +339,7 @@ i=15,j=7
 8
 ```
 可以看出，`KMP`算法其实是减少了比对次数，但增加了一个求解`PMT`数组的过程，所以在长字符串中效果比较明显。很多算法都是在暴力解的基础上做优化的，如上提供的`暴力解`也是处理了一些特殊情况的。
+
+## 延申
+
+[实现 strStr()](https://leetcode-cn.com/problems/implement-strstr/solution/shi-xian-strstr-by-leetcode-solution-ds6y/)
