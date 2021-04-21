@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-04-20 09:38:49
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-04-20 15:18:31
+ * @LastEditTime: 2021-04-20 15:20:02
  * @Description: 整数反转
  */
 /*
@@ -75,6 +75,13 @@ function reverse(x: number): number {
     return num
 };
 
+/**
+ * 整数处理
+ * @param x 
+ * @returns 
+ * 执行用时：108 ms, 在所有 TypeScript 提交中击败了53.86%的用户
+ * 内存消耗：40.6 MB, 在所有 TypeScript 提交中击败了12.73%的用户
+ */
 function reverseOne(x: number): number {
     if (x === 0) {
         return 0
