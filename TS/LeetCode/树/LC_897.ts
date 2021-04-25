@@ -27,16 +27,8 @@ import TreeNode from '../TreeNode';
 /**
  * 递归解
  * @param root
- * 执行用时：
-88 ms
-, 在所有 TypeScript 提交中击败了
-50.00%
-的用户
-内存消耗：
-39.6 MB
-, 在所有 TypeScript 提交中击败了
-100.00%
-的用户
+ * 执行用时：88 ms, 在所有 TypeScript 提交中击败了50.00%的用户
+ * 内存消耗：39.6 MB, 在所有 TypeScript 提交中击败了100.00%的用户
  */
 function increasingBSTOne(root: TreeNode | null): TreeNode | null {
     if (root === null) {
@@ -71,16 +63,8 @@ function increasingBSTOne(root: TreeNode | null): TreeNode | null {
 /**
  * 迭代算法中序遍历
  * @param root 
- * 执行用时：
-84 ms
-, 在所有 TypeScript 提交中击败了
-81.25%
-的用户
-内存消耗：
-39.6 MB
-, 在所有 TypeScript 提交中击败了
-100.00%
-的用户
+ * 执行用时：84 ms, 在所有 TypeScript 提交中击败了81.25%的用户
+ * 内存消耗：39.6 MB, 在所有 TypeScript 提交中击败了100.00%的用户
  */
 function increasingBSTTwo(root: TreeNode | null): TreeNode | null {
     let newNode: TreeNode | null = null
@@ -103,3 +87,25 @@ function increasingBSTTwo(root: TreeNode | null): TreeNode | null {
     }
     return newNode
 };
+
+function increasingBSTThree(root: TreeNode | null): TreeNode | null {
+    if (root === null) {
+        return null
+    }
+    let left = increasingBSTThree(root.left)
+    root.left = null
+    left.right = root
+    root.right = increasingBSTThree(root.right)
+    return left
+}
+
+function increasingBSTFour(root: TreeNode | null): TreeNode | null {
+    if (root === null) {
+        return null
+    }
+    let left = increasingBSTThree(root.left)
+    root.left = null
+    left.right = root
+    root.right = increasingBSTThree(root.right)
+    return left
+}
