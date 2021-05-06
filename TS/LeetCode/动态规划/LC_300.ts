@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-03-04 09:24:00
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-03-08 23:17:51
+ * @LastEditTime: 2021-05-06 16:32:50
  * @Description: 最长递增子序列
  */
 /*
@@ -41,16 +41,8 @@
 /**
  * 动态规划
  * @param nums 
- * 执行用时：
-152 ms
-, 在所有 TypeScript 提交中击败了
-72.59%
-的用户
-内存消耗：
-39.5 MB
-, 在所有 TypeScript 提交中击败了
-100.00%
-的用户
+ * 执行用时：152 ms, 在所有 TypeScript 提交中击败了72.59%的用户
+ * 内存消耗：39.5 MB, 在所有 TypeScript 提交中击败了100.00%的用户
  */
 function lengthOfLISOne(nums: number[]): number {
     let dp = Array<number>(nums.length)
