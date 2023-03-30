@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2023-03-28 00:03:25
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2023-03-28 00:33:16
+ * @LastEditTime: 2023-03-30 19:49:22
  * @Description: 搜索插入位置
  */
 /*
@@ -66,6 +66,3 @@ function searchInsert(nums: number[], target: number): number {
     }
     return leftIndex + 1
 };
-
-[1,3,5,6]
-7
