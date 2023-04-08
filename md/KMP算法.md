@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-02-20 09:33:17
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-02-20 10:05:06
+ * @LastEditTime: 2023-04-08 15:17:46
  * @Description: KMP算法
 -->
 <!-- TOC -->
@@ -24,6 +24,9 @@
 
 <!-- /TOC -->
 # KMP算法
+
+[LeetCode KMP](https://leetcode.cn/leetbook/read/array-and-string/cpoo6/)
+Knuth–Morris–Pratt（KMP）算法是一种改进的字符串匹配算法，它的核心是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数以达到快速匹配的目的。它的时间复杂度是 O(m+n)。
 
 ## 暴力算法
 
