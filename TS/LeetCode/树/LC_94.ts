@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-03-01 09:17:40
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-03-02 12:06:01
+ * @LastEditTime: 2023-04-12 23:57:11
  * @Description: 二叉树的中序遍历
  */
 import TreeNode from '../TreeNode';
@@ -116,4 +116,25 @@ function inorderTraversalThree(root: TreeNode | null): number[] {
         }
     }
     return arr
+}
+
+function inorderTraversalThree(root: TreeNode | null): number[] {
+    if (!root) {
+        return []
+    }
+    let ans: number[] = []
+    const db: (TreeNode | null)[] = []
+    while (root || db.length) {
+        while (root) {
+            db.push(root)
+            root = root.left
+        }
+        const root = db.pop()
+        if (!root) {
+            continue
+        }
+        ans.push(root.val)
+        root = root.right
+    }
+    return ans
 }
